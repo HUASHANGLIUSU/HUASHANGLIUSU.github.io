@@ -171,6 +171,7 @@ a {
 }
 
 .theme-toggle,
+.language-switch,
 .menu-toggle,
 .back-to-top {
   border: 1px solid var(--line);
@@ -187,7 +188,18 @@ a {
   font-size: 1.1rem;
 }
 
+.language-switch {
+  width: 42px;
+  height: 42px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
 .theme-toggle:hover,
+.language-switch:hover,
 .menu-toggle:hover,
 .back-to-top:hover {
   transform: translateY(-2px);

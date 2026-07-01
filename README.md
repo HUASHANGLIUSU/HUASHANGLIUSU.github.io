@@ -7,6 +7,7 @@
 ```text
 .
 ├── index.html   # 页面结构与内容
+├── en.html      # 英文版页面
 ├── style.css    # 视觉样式、响应式布局、主题变量
 ├── script.js    # 主题切换、菜单、滚动高亮、复制邮箱等交互
 └── README.md    # 项目说明

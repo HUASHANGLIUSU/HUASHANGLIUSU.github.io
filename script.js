@@ -12,11 +12,17 @@ const year = document.querySelector("#year");
 
 const storedTheme = localStorage.getItem("theme");
 const initialTheme = storedTheme || "dark";
+const isEnglish = document.documentElement.lang.startsWith("en");
 
 function applyTheme(theme) {
   root.dataset.theme = theme;
   themeIcon.textContent = theme === "light" ? "☀" : "☾";
-  themeToggle.setAttribute("aria-label", theme === "light" ? "切换深色模式" : "切换浅色模式");
+  themeToggle.setAttribute(
+    "aria-label",
+    theme === "light"
+      ? (isEnglish ? "Toggle dark mode" : "切换深色模式")
+      : (isEnglish ? "Toggle light mode" : "切换浅色模式")
+  );
 }
 
 function closeMenu() {
@@ -95,7 +101,7 @@ copyButton.addEventListener("click", async () => {
 
   try {
     await navigator.clipboard.writeText(email);
-    copyStatus.textContent = "邮箱已复制到剪贴板。";
+    copyStatus.textContent = isEnglish ? "Email copied to clipboard." : "邮箱已复制到剪贴板。";
   } catch {
     const helper = document.createElement("textarea");
     helper.value = email;
@@ -106,7 +112,7 @@ copyButton.addEventListener("click", async () => {
     helper.select();
     document.execCommand("copy");
     helper.remove();
-    copyStatus.textContent = "邮箱已复制到剪贴板。";
+    copyStatus.textContent = isEnglish ? "Email copied to clipboard." : "邮箱已复制到剪贴板。";
   }
 
   window.setTimeout(() => {
