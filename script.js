@@ -13,6 +13,7 @@ const year = document.querySelector("#year");
 const storedTheme = localStorage.getItem("theme");
 const initialTheme = storedTheme || "dark";
 const isEnglish = document.documentElement.lang.startsWith("en");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function applyTheme(theme) {
   root.dataset.theme = theme;
@@ -40,6 +41,36 @@ function setActiveLink(id) {
 
 applyTheme(initialTheme);
 year.textContent = new Date().getFullYear();
+
+function updateScrollProgress() {
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+  root.style.setProperty("--scroll-progress", Math.min(1, Math.max(0, progress)).toFixed(4));
+
+  if (!reducedMotion) {
+    root.style.setProperty("--page-shift", `${Math.round(window.scrollY * -0.04)}px`);
+  }
+}
+
+updateScrollProgress();
+window.addEventListener("scroll", updateScrollProgress, { passive: true });
+
+if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
+  const cursorGlow = document.createElement("div");
+  cursorGlow.className = "cursor-glow";
+  cursorGlow.setAttribute("aria-hidden", "true");
+  document.body.appendChild(cursorGlow);
+
+  window.addEventListener("pointermove", (event) => {
+    root.style.setProperty("--cursor-x", `${event.clientX}px`);
+    root.style.setProperty("--cursor-y", `${event.clientY}px`);
+    cursorGlow.classList.add("is-active");
+  }, { passive: true });
+
+  document.addEventListener("pointerleave", () => {
+    cursorGlow.classList.remove("is-active");
+  });
+}
 
 themeToggle.addEventListener("click", () => {
   const nextTheme = root.dataset.theme === "light" ? "dark" : "light";
@@ -95,6 +126,33 @@ const revealObserver = new IntersectionObserver(
 );
 
 document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+
+if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
+  document.querySelectorAll(".project-card, .skill-card, .award-card, .contact-card, .hero-panel").forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      const xPercent = x / rect.width;
+      const yPercent = y / rect.height;
+
+      card.style.setProperty("--spot-x", `${Math.round(xPercent * 100)}%`);
+      card.style.setProperty("--spot-y", `${Math.round(yPercent * 100)}%`);
+
+      if (card.classList.contains("project-card")) {
+        card.style.setProperty("--tilt-x", `${((xPercent - 0.5) * 5).toFixed(2)}deg`);
+        card.style.setProperty("--tilt-y", `${((0.5 - yPercent) * 5).toFixed(2)}deg`);
+      }
+    }, { passive: true });
+
+    card.addEventListener("pointerleave", () => {
+      card.style.removeProperty("--spot-x");
+      card.style.removeProperty("--spot-y");
+      card.style.removeProperty("--tilt-x");
+      card.style.removeProperty("--tilt-y");
+    });
+  });
+}
 
 copyButton.addEventListener("click", async () => {
   const email = copyButton.dataset.email;
