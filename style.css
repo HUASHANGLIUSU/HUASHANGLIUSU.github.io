@@ -549,6 +549,7 @@ h3 {
 .hero-panel,
 .skill-card,
 .project-card,
+.experience-card,
 .award-card,
 .contact-card {
   border: 1px solid var(--line);
@@ -561,6 +562,7 @@ h3 {
 .hero-panel,
 .skill-card,
 .project-card,
+.experience-card,
 .award-card,
 .contact-card {
   position: relative;
@@ -570,6 +572,7 @@ h3 {
 .hero-panel::before,
 .skill-card::before,
 .project-card::before,
+.experience-card::before,
 .award-card::before,
 .contact-card::before {
   content: "";
@@ -586,6 +589,7 @@ h3 {
 .hero-panel:hover::before,
 .skill-card:hover::before,
 .project-card:hover::before,
+.experience-card:hover::before,
 .award-card:hover::before,
 .contact-card:hover::before {
   opacity: 1;
@@ -811,6 +815,86 @@ h3 {
 
 .project-card p:not(.project-index) {
   margin: 0;
+}
+
+.experience-card {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 28px;
+  align-items: stretch;
+  width: min(920px, 100%);
+  margin: 0 auto;
+  padding: 28px;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.experience-card:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.24);
+}
+
+.experience-date {
+  position: relative;
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  min-height: 160px;
+  padding: 22px;
+  border: 1px solid color-mix(in srgb, var(--accent) 32%, var(--line));
+  border-radius: var(--radius);
+  background: rgba(53, 214, 255, 0.08);
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.experience-date::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 50%;
+  width: calc(100% - 44px);
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  opacity: 0.5;
+}
+
+.experience-date span {
+  position: relative;
+  display: block;
+}
+
+.experience-content {
+  display: grid;
+  align-content: center;
+  gap: 12px;
+}
+
+.experience-label {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.experience-content h3 {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.6vw, 2rem);
+}
+
+.experience-content p:not(.experience-label) {
+  margin: 0;
+  color: var(--muted);
+}
+
+.experience-link {
+  width: fit-content;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.experience-link:hover {
+  text-decoration: underline;
 }
 
 .award-card {
@@ -1126,6 +1210,15 @@ h3 {
 
   .award-card {
     grid-template-columns: 1fr;
+  }
+
+  .experience-card {
+    grid-template-columns: 1fr;
+    padding: 22px;
+  }
+
+  .experience-date {
+    min-height: auto;
   }
 
   .award-card::after,
