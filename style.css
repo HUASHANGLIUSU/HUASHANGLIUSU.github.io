@@ -657,6 +657,11 @@ h3 {
 .stat-grid dd {
   margin: 12px 0 0;
   font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.stat-grid div:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
 }
 
 .section-grid,
@@ -819,17 +824,7 @@ h3 {
 }
 
 .award-card::after {
-  content: "";
-  position: absolute;
-  left: -9px;
-  top: 50%;
-  width: 14px;
-  height: 14px;
-  border: 2px solid var(--accent);
-  border-radius: 50%;
-  background: var(--bg);
-  box-shadow: 0 0 18px rgba(53, 214, 255, 0.5);
-  transform: translateY(-50%);
+  content: none;
 }
 
 .award-card:hover {
@@ -865,7 +860,6 @@ h3 {
 }
 
 .awards-list {
-  position: relative;
   display: grid;
   gap: 18px;
   width: min(860px, 100%);
@@ -873,14 +867,7 @@ h3 {
 }
 
 .awards-list::before {
-  content: "";
-  position: absolute;
-  left: -2px;
-  top: 24px;
-  bottom: 24px;
-  width: 1px;
-  background: linear-gradient(180deg, transparent, var(--accent), var(--accent-2), transparent);
-  opacity: 0.44;
+  content: none;
 }
 
 .contact-lead {
@@ -985,6 +972,10 @@ h3 {
 
 .project-grid .reveal:nth-child(5) {
   transition-delay: 320ms;
+}
+
+.project-grid .reveal:nth-child(6) {
+  transition-delay: 400ms;
 }
 
 @keyframes markPulse {
