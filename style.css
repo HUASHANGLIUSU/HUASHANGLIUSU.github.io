@@ -16,6 +16,12 @@
   --font: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+@property --panel-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
 [data-theme="light"] {
   color-scheme: light;
   --bg: #f6f9fd;
@@ -63,6 +69,22 @@ body::before {
     linear-gradient(115deg, transparent 0 34%, rgba(53, 214, 255, 0.08) 36%, transparent 39% 100%),
     repeating-linear-gradient(90deg, transparent 0 92px, rgba(255, 255, 255, 0.025) 92px 93px);
   transform: translate3d(var(--page-shift, 0px), 0, 0);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  opacity: 0.34;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.5) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 78% 16%, rgba(53, 214, 255, 0.45) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 32% 68%, rgba(124, 92, 255, 0.42) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 86% 76%, rgba(51, 224, 181, 0.36) 0 1px, transparent 1.5px);
+  background-size: 220px 220px, 260px 260px, 300px 300px, 340px 340px;
+  animation: starDrift 46s linear infinite;
 }
 
 body.menu-open {
@@ -151,6 +173,20 @@ a {
   border-bottom: 1px solid var(--line);
   background: color-mix(in srgb, var(--bg) 72%, transparent);
   backdrop-filter: blur(18px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+}
+
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  width: min(420px, 60vw);
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  transform: translateX(-50%);
+  opacity: 0.45;
 }
 
 .navbar {
@@ -559,6 +595,19 @@ h3 {
   padding: 24px;
 }
 
+.hero-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: conic-gradient(from var(--panel-angle, 0deg), transparent 0 78%, rgba(53, 214, 255, 0.34), rgba(124, 92, 255, 0.25), transparent 92% 100%);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  padding: 1px;
+  animation: panelOrbit 12s linear infinite;
+}
+
 .signal-card {
   display: flex;
   align-items: center;
@@ -622,6 +671,22 @@ h3 {
   max-width: 680px;
   margin: 0 auto 36px;
   text-align: center;
+}
+
+.section-heading h2 {
+  position: relative;
+  display: inline-block;
+}
+
+.section-heading h2::after {
+  content: "";
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  bottom: -12px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--accent-2), transparent);
+  opacity: 0.68;
 }
 
 .section-body {
@@ -699,10 +764,38 @@ h3 {
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
+.project-card::after {
+  content: attr(data-hover);
+  position: absolute;
+  left: auto;
+  right: 18px;
+  top: 18px;
+  max-width: calc(100% - 36px);
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--line));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-strong) 80%, transparent);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 220ms ease, transform 220ms ease;
+  pointer-events: none;
+}
+
 .project-card:hover {
   transform: perspective(900px) rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg)) translateY(-8px);
   border-color: color-mix(in srgb, var(--accent) 48%, var(--line));
   box-shadow: 0 28px 90px rgba(0, 0, 0, 0.28);
+}
+
+.project-card:hover::after {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .project-index {
@@ -723,6 +816,20 @@ h3 {
   width: 100%;
   padding: 26px;
   transition: transform 220ms ease, border-color 220ms ease;
+}
+
+.award-card::after {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: var(--bg);
+  box-shadow: 0 0 18px rgba(53, 214, 255, 0.5);
+  transform: translateY(-50%);
 }
 
 .award-card:hover {
@@ -758,10 +865,22 @@ h3 {
 }
 
 .awards-list {
+  position: relative;
   display: grid;
   gap: 18px;
   width: min(860px, 100%);
   margin: 0 auto;
+}
+
+.awards-list::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 24px;
+  bottom: 24px;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--accent), var(--accent-2), transparent);
+  opacity: 0.44;
 }
 
 .contact-lead {
@@ -913,6 +1032,24 @@ h3 {
   }
 }
 
+@keyframes starDrift {
+  from {
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+  to {
+    background-position: 220px 160px, -260px 180px, 300px -180px, -340px -220px;
+  }
+}
+
+@keyframes panelOrbit {
+  from {
+    --panel-angle: 0deg;
+  }
+  to {
+    --panel-angle: 360deg;
+  }
+}
+
 @media (max-width: 980px) {
   .hero-layout,
   .section-grid,
@@ -999,6 +1136,11 @@ h3 {
   .award-card {
     grid-template-columns: 1fr;
   }
+
+  .award-card::after,
+  .awards-list::before {
+    display: none;
+  }
 }
 
 @media (max-width: 520px) {
@@ -1054,7 +1196,9 @@ h3 {
   .brand-mark,
   .grid-layer,
   .orb,
-  .hero::after {
+  .hero::after,
+  .hero-panel::after,
+  body::after {
     animation: none !important;
   }
 
