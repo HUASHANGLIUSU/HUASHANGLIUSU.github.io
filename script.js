@@ -146,8 +146,6 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
     }, { passive: true });
 
     card.addEventListener("pointerleave", () => {
-      card.style.removeProperty("--spot-x");
-      card.style.removeProperty("--spot-y");
       card.style.removeProperty("--tilt-x");
       card.style.removeProperty("--tilt-y");
     });
