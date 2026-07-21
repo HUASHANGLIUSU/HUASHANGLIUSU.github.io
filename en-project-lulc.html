@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Campus LULC classification and accuracy validation project by Qian Xinian">
+  <title>Campus LULC Classification &amp; Accuracy Validation | Qian Xinian</title>
+  <link rel="stylesheet" href="style.css?v=20260716-3">
+</head>
+<body class="detail-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <header class="site-header" aria-label="Primary navigation">
+    <nav class="navbar container">
+      <a class="brand" href="en.html#home"><span class="brand-mark" aria-hidden="true">Q</span><span>Qian Xinian</span></a>
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" aria-label="Toggle light mode" title="Toggle theme"><span class="theme-icon" aria-hidden="true">☾</span></button>
+        <a class="language-switch" href="project-lulc.html" lang="zh-CN" aria-label="切换到中文">中</a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-menu"><span></span><span></span><span></span></button>
+      </div>
+      <ul class="nav-menu" id="primary-menu">
+        <li><a class="nav-link" href="en.html#home">Home</a></li>
+        <li><a class="nav-link" href="en.html#about">About</a></li>
+        <li><a class="nav-link" href="en.html#skills">Skills</a></li>
+        <li><a class="nav-link active" href="en.html#projects">Projects</a></li>
+        <li><a class="nav-link" href="en.html#experience">Experience</a></li>
+        <li><a class="nav-link" href="en.html#awards">Awards</a></li>
+        <li><a class="nav-link" href="en.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="project-detail-main">
+    <section class="detail-hero" aria-labelledby="detail-title">
+      <div class="container detail-hero-grid">
+        <div class="reveal">
+          <a class="back-link" href="en.html#projects">← Back to projects</a>
+          <p class="detail-kicker">Remote Sensing · ENVI · Spatial Post-processing</p>
+          <h1 class="detail-title" id="detail-title">Campus LULC Classification &amp; Accuracy Validation</h1>
+          <p class="detail-summary">A land-cover study of ECNU's Minhang campus using 10 m four-band imagery, ENVI maximum likelihood classification, conservative object-level Python post-processing, and field-photo validation.</p>
+          <div class="detail-meta"><span>Python</span><span>ENVI</span><span>Rasterio</span><span>NumPy</span><span>scikit-image</span><span>GIS</span></div>
+        </div>
+        <figure class="detail-visual detail-visual-contain reveal"><img src="assets/lulc-classification-comparison.png" alt="Comparison of the original maximum likelihood result, FinalV3, and changed pixels"></figure>
+      </div>
+    </section>
+
+    <section class="detail-content" aria-label="Project details">
+      <div class="container detail-grid">
+        <article class="detail-panel wide reveal"><h2>Overview</h2><p>The workflow combines ENVI maximum likelihood classification, object-level spatial rule post-processing in Python, and field-sample accuracy assessment. Seven detailed classes are retained for mapping, while Water, TreeCover, Grassland, and Impervious / Artificial Surface are used for a consistent comparison with SinoLC-1.</p></article>
+
+        <div class="detail-metric-grid reveal" aria-label="Key project metrics">
+          <div class="detail-metric"><strong>51.43%</strong><span>FinalV3 overall accuracy</span></div>
+          <div class="detail-metric"><strong>0.3246</strong><span>FinalV3 Cohen's Kappa</span></div>
+          <div class="detail-metric"><strong>+20.00 pp</strong><span>OA gain over SinoLC-1</span></div>
+          <div class="detail-metric"><strong>897</strong><span>changed pixels, 3.96% of the map</span></div>
+        </div>
+
+        <article class="detail-panel reveal"><h2>Data &amp; Study Area</h2><ul class="detail-list"><li>ECNU Minhang Campus</li><li>Four bands: B02, B03, B04, B08</li><li>10 m spatial resolution</li><li>139 × 163 output grid</li><li>WGS 84 / UTM Zone 51N</li></ul></article>
+        <article class="detail-panel reveal"><h2>Classification</h2><ol class="detail-list"><li>Create seven training ROI classes in ENVI</li><li>Run Maximum Likelihood Classification</li><li>Compute NDVI, NDWI, and local texture</li><li>Apply class-specific spatial constraints</li><li>Export FinalV3 and assess accuracy</li></ol></article>
+        <article class="detail-panel reveal"><h2>Python Post-processing</h2><p>This stage is rule-driven spatial post-processing rather than a newly trained deep-learning model. Rasterio, NumPy, SciPy, and scikit-image support water connectivity, track-ring structure, vegetation cleanup, residential impervious refinement, and conservative speckle removal.</p></article>
+
+        <figure class="detail-panel detail-result-figure reveal" id="results">
+          <a href="assets/lulc-classification-comparison.png" target="_blank" rel="noopener noreferrer" aria-label="Open the full classification comparison">
+            <img src="assets/lulc-classification-comparison.png" alt="Original maximum likelihood classification, FinalV3, and the 897 changed pixels">
+          </a>
+          <figcaption>Classification comparison: FinalV3 changes 897 pixels, or 3.96% of the map, while preserving the main spatial pattern.</figcaption>
+        </figure>
+
+        <article class="detail-panel reveal"><h2>Field Validation</h2><p>The main assessment uses 35 effective field samples: 3 Water, 13 TreeCover, 8 Grassland, and 11 Impervious. The same photo-derived coordinates are sampled against both SinoLC-1 and FinalV3.</p></article>
+        <article class="detail-panel reveal"><h2>Accuracy</h2><p>SinoLC-1 records 31.43% OA and 0.0071 Kappa. FinalV3 records 51.43% OA and 0.3246 Kappa. FinalV3 performs better on this sample set, but the overall accuracy remains limited.</p></article>
+        <article class="detail-panel reveal"><h2>Main Confusions</h2><ul class="detail-list"><li>TreeCover → Impervious: 6 samples</li><li>Impervious → Grassland: 4 samples</li><li>TreeCover → Grassland: 3 samples</li><li>Grassland → TreeCover: 2 samples</li></ul></article>
+
+        <figure class="detail-panel detail-result-figure reveal">
+          <a href="assets/lulc-accuracy-comparison.png" target="_blank" rel="noopener noreferrer" aria-label="Open the full accuracy comparison">
+            <img src="assets/lulc-accuracy-comparison.png" alt="Overall metrics and class recall for SinoLC-1 and FinalV3">
+          </a>
+          <figcaption>Metrics from 35 effective evaluation samples. Water has only three independent samples, so its class-level estimate is unstable.</figcaption>
+        </figure>
+
+        <article class="detail-panel wide reveal"><h2>Conclusion &amp; Limitations</h2><p>Spatial priors reduce obvious speckle and implausible structures in pixel-level classification, but visual continuity does not guarantee higher accuracy. Mixed pixels at 10 m resolution, similar spectra among campus surfaces, vegetation boundaries, and the limited sample distribution remain major constraints. Higher-resolution imagery, better-balanced field samples, and semantic segmentation are natural next steps.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><p>© <span id="year"></span> Qian Xinian.</p><button class="back-to-top" type="button" aria-label="Back to top">↑</button></div></footer>
+  <script src="script.js?v=20260716-3"></script>
+</body>
+</html>

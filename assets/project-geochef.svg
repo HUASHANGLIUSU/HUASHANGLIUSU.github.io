@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">GeoChef remote sensing dataset intelligence</title>
+  <desc id="desc">A stylized dashboard for remote sensing vision-language dataset search, comparison, and risk detection.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#070d1a"/>
+      <stop offset="1" stop-color="#16214a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop offset="0" stop-color="#35d6ff"/>
+      <stop offset="1" stop-color="#7c5cff"/>
+    </linearGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="960" height="540" fill="url(#bg)"/>
+  <circle cx="178" cy="116" r="122" fill="#35d6ff" opacity=".12"/>
+  <circle cx="820" cy="420" r="180" fill="#7c5cff" opacity=".14"/>
+  <g opacity=".18" stroke="#9fcdff">
+    <path d="M80 90h800M80 180h800M80 270h800M80 360h800M80 450h800"/>
+    <path d="M160 40v460M320 40v460M480 40v460M640 40v460M800 40v460"/>
+  </g>
+  <g transform="translate(90 86)">
+    <rect width="780" height="368" rx="26" fill="#0d1b2e" stroke="#35d6ff" stroke-opacity=".36"/>
+    <rect x="34" y="34" width="330" height="132" rx="18" fill="#13263f" stroke="#9fcdff" stroke-opacity=".18"/>
+    <rect x="396" y="34" width="350" height="132" rx="18" fill="#13263f" stroke="#9fcdff" stroke-opacity=".18"/>
+    <rect x="34" y="198" width="712" height="126" rx="18" fill="#13263f" stroke="#9fcdff" stroke-opacity=".18"/>
+    <g transform="translate(64 64)" fill="none" stroke-width="9" stroke-linecap="round" filter="url(#softGlow)">
+      <path d="M0 62c42-50 96-52 138-18 38 30 82 30 126-6" stroke="#35d6ff"/>
+      <path d="M0 90h260" stroke="#9fcdff" stroke-opacity=".26"/>
+    </g>
+    <g transform="translate(430 62)">
+      <circle cx="46" cy="52" r="38" fill="none" stroke="#35d6ff" stroke-width="8"/>
+      <path d="M75 82l52 52" stroke="#35d6ff" stroke-width="10" stroke-linecap="round"/>
+      <rect x="150" y="16" width="144" height="24" rx="12" fill="url(#accent)" opacity=".85"/>
+      <rect x="150" y="62" width="104" height="18" rx="9" fill="#9fcdff" opacity=".28"/>
+      <rect x="150" y="98" width="166" height="18" rx="9" fill="#9fcdff" opacity=".2"/>
+    </g>
+    <g transform="translate(68 236)" font-family="Arial, sans-serif">
+      <text fill="#edf6ff" font-size="24" font-weight="700">RS-VLM Dataset Intelligence</text>
+      <text y="42" fill="#a9bad0" font-size="17">Search · Compare · Leakage Detection · Recommendation</text>
+      <rect y="70" width="160" height="32" rx="16" fill="#35d6ff" opacity=".18" stroke="#35d6ff" stroke-opacity=".55"/>
+      <rect x="180" y="70" width="126" height="32" rx="16" fill="#7c5cff" opacity=".16" stroke="#7c5cff" stroke-opacity=".55"/>
+      <rect x="326" y="70" width="132" height="32" rx="16" fill="#33e0b5" opacity=".15" stroke="#33e0b5" stroke-opacity=".5"/>
+    </g>
+  </g>
+</svg>

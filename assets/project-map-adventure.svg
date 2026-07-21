@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Map adventure game</title>
+  <desc id="desc">A stylized tile map adventure scene with routes, events, and player state panels.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#07111f"/>
+      <stop offset="1" stop-color="#173447"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" x2="1">
+      <stop offset="0" stop-color="#35d6ff"/>
+      <stop offset="1" stop-color="#33e0b5"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#bg)"/>
+  <g transform="translate(70 54)">
+    <rect width="820" height="426" rx="28" fill="#0d1b2e" stroke="#35d6ff" stroke-opacity=".34"/>
+    <g transform="translate(44 44)">
+      <g stroke="#0d1b2e" stroke-width="4">
+        <rect width="92" height="72" rx="12" fill="#2f8e5b"/>
+        <rect x="98" width="92" height="72" rx="12" fill="#406c9f"/>
+        <rect x="196" width="92" height="72" rx="12" fill="#d7b45a"/>
+        <rect x="294" width="92" height="72" rx="12" fill="#2f8e5b"/>
+        <rect x="392" width="92" height="72" rx="12" fill="#554c9c"/>
+        <rect y="78" width="92" height="72" rx="12" fill="#496b56"/>
+        <rect x="98" y="78" width="92" height="72" rx="12" fill="#2f8e5b"/>
+        <rect x="196" y="78" width="92" height="72" rx="12" fill="#496b56"/>
+        <rect x="294" y="78" width="92" height="72" rx="12" fill="#406c9f"/>
+        <rect x="392" y="78" width="92" height="72" rx="12" fill="#d7b45a"/>
+        <rect y="156" width="92" height="72" rx="12" fill="#d7b45a"/>
+        <rect x="98" y="156" width="92" height="72" rx="12" fill="#554c9c"/>
+        <rect x="196" y="156" width="92" height="72" rx="12" fill="#2f8e5b"/>
+        <rect x="294" y="156" width="92" height="72" rx="12" fill="#496b56"/>
+        <rect x="392" y="156" width="92" height="72" rx="12" fill="#406c9f"/>
+      </g>
+      <path d="M44 192C94 126 134 92 214 120c74 26 116-34 206-70" fill="none" stroke="url(#route)" stroke-width="14" stroke-linecap="round"/>
+      <circle cx="44" cy="192" r="18" fill="#35d6ff"/>
+      <circle cx="214" cy="120" r="18" fill="#33e0b5"/>
+      <circle cx="420" cy="50" r="18" fill="#7c5cff"/>
+    </g>
+    <g transform="translate(590 76)" font-family="Arial, sans-serif">
+      <text fill="#edf6ff" font-size="26" font-weight="700">Map Adventure</text>
+      <text y="40" fill="#a9bad0" font-size="17">Tile exploration · events · state</text>
+      <rect y="78" width="176" height="42" rx="12" fill="#13263f" stroke="#9fcdff" stroke-opacity=".22"/>
+      <text x="18" y="106" fill="#35d6ff" font-size="18" font-weight="700">HP  86 / 100</text>
+      <rect y="142" width="176" height="42" rx="12" fill="#13263f" stroke="#9fcdff" stroke-opacity=".22"/>
+      <text x="18" y="170" fill="#33e0b5" font-size="18" font-weight="700">Quest Active</text>
+      <rect y="206" width="176" height="86" rx="12" fill="#13263f" stroke="#9fcdff" stroke-opacity=".22"/>
+      <text x="18" y="238" fill="#edf6ff" font-size="17" font-weight="700">Event Trigger</text>
+      <text x="18" y="266" fill="#a9bad0" font-size="15">forest crossing</text>
+    </g>
+  </g>
+</svg>

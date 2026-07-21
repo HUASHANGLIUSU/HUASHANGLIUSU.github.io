@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="千禧年地图冒险游戏项目简介"><title>地图冒险游戏 | 千禧年</title><link rel="stylesheet" href="style.css?v=20260716-4"></head>
+<body class="detail-page">
+  <a class="skip-link" href="#main">跳转到主要内容</a><div class="scroll-progress" aria-hidden="true"></div>
+  <header class="site-header" aria-label="顶部导航"><nav class="navbar container"><a class="brand" href="index.html#home"><span class="brand-mark" aria-hidden="true">Q</span><span>千禧年</span></a><div class="nav-actions"><button class="theme-toggle" type="button" aria-label="切换浅色模式" title="切换主题"><span class="theme-icon" aria-hidden="true">☾</span></button><a class="language-switch" href="en-project-map-adventure.html" lang="en">EN</a><button class="menu-toggle" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="primary-menu"><span></span><span></span><span></span></button></div><ul class="nav-menu" id="primary-menu"><li><a class="nav-link" href="index.html#home">首页</a></li><li><a class="nav-link" href="index.html#about">关于我</a></li><li><a class="nav-link" href="index.html#skills">技能</a></li><li><a class="nav-link active" href="index.html#projects">项目</a></li><li><a class="nav-link" href="index.html#experience">经历</a></li><li><a class="nav-link" href="index.html#awards">获奖</a></li><li><a class="nav-link" href="index.html#contact">联系方式</a></li></ul></nav></header>
+  <main id="main" class="project-detail-main">
+    <section class="detail-hero" aria-labelledby="detail-title"><div class="container detail-hero-grid"><div class="reveal"><a class="back-link" href="index.html#projects">← 返回项目列表</a><p class="detail-kicker">Godot · Exploration · Event-driven Adventure</p><h1 class="detail-title" id="detail-title">地图冒险游戏</h1><p class="detail-summary">从 C++ 控制台原型、Qt Widgets 桌面界面持续演进到 Godot 版本，以地图探索和战争迷雾为主轴，串联事件抉择、战斗、商店、营地、成长与收藏系统。</p><div class="detail-meta"><span>Godot</span><span>GDScript</span><span>C++ / Qt</span><span>战争迷雾</span><span>事件与战斗</span></div></div><figure class="detail-visual detail-visual-contain reveal"><img src="assets/map-adventure-map.png" alt="地图冒险游戏 Godot 版本真实地图探索界面"></figure></div></section>
+    <section class="detail-content" aria-label="项目详情"><div class="container detail-grid">
+      <article class="detail-panel wide reveal"><h2>核心循环</h2><p>玩家从营地进入分层地图，在可见范围内选择路线并消耗行动资源。地块会触发战斗、资源、商店或特殊事件，探索结果持续反馈到生命、威胁、背包、成长和收藏进度中。</p></article>
+      <article class="detail-panel reveal"><h2>地图系统</h2><ul class="detail-list"><li>网格地图、楼层推进与路线选择</li><li>按地块规则计算可见范围与战争迷雾</li><li>探索状态、资源和威胁同步展示</li><li>不同事件地块形成风险与收益节奏</li></ul></article>
+      <article class="detail-panel reveal"><h2>系统模块</h2><ul class="detail-list"><li>事件选择与条件分支</li><li>回合制战斗与潮汐机制界面</li><li>商店、营地、背包与角色成长</li><li>收藏图鉴、战绩记录与日志反馈</li></ul></article>
+      <article class="detail-panel wide reveal"><h2>工程演进</h2><p>项目保留了原始 C++ 玩法逻辑，并完成 Qt Widgets 桌面界面迁移与 Godot/GDScript 版本重构。各阶段持续校验商店、地图可见性、目标阻挡、事件和状态流转等行为，使界面升级不改变核心规则。</p></article>
+      <div class="detail-gallery" aria-label="地图冒险游戏真实界面展示">
+        <figure class="detail-panel detail-result-figure reveal"><a href="assets/map-adventure-event.png" target="_blank"><img src="assets/map-adventure-event.png" alt="地图冒险游戏特殊事件选择界面"></a><figcaption>特殊事件：以条件和代价组织多分支选择，并实时反馈资源变化。</figcaption></figure>
+        <figure class="detail-panel detail-result-figure reveal"><a href="assets/map-adventure-combat.png" target="_blank"><img src="assets/map-adventure-combat.png" alt="地图冒险游戏战斗界面"></a><figcaption>战斗系统：在统一羊皮纸视觉中呈现敌我状态、技能与战斗节奏。</figcaption></figure>
+        <figure class="detail-panel detail-result-figure reveal"><a href="assets/map-adventure-collectibles.png" target="_blank"><img src="assets/map-adventure-collectibles.png" alt="地图冒险游戏收藏系统界面"></a><figcaption>收藏系统：记录探索中获得的条目与进度，补充长期目标。</figcaption></figure>
+      </div>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="container footer-inner"><p>© <span id="year"></span> 千禧年. All rights reserved.</p><button class="back-to-top" type="button" aria-label="返回顶部">↑</button></div></footer><script src="script.js?v=20260716-4"></script>
+</body>
+</html>

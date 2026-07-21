@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="千禧年 LULC 校园土地覆盖分类与精度验证项目简介">
+  <title>LULC 校园土地覆盖分类与精度验证 | 千禧年</title>
+  <link rel="stylesheet" href="style.css?v=20260716-3">
+</head>
+<body class="detail-page">
+  <a class="skip-link" href="#main">跳转到主要内容</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <header class="site-header" aria-label="顶部导航">
+    <nav class="navbar container">
+      <a class="brand" href="index.html#home"><span class="brand-mark" aria-hidden="true">Q</span><span>千禧年</span></a>
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" aria-label="切换浅色模式" title="切换主题"><span class="theme-icon" aria-hidden="true">☾</span></button>
+        <a class="language-switch" href="en-project-lulc.html" lang="en" aria-label="Switch to English">EN</a>
+        <button class="menu-toggle" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="primary-menu"><span></span><span></span><span></span></button>
+      </div>
+      <ul class="nav-menu" id="primary-menu">
+        <li><a class="nav-link" href="index.html#home">首页</a></li>
+        <li><a class="nav-link" href="index.html#about">关于我</a></li>
+        <li><a class="nav-link" href="index.html#skills">技能</a></li>
+        <li><a class="nav-link active" href="index.html#projects">项目</a></li>
+        <li><a class="nav-link" href="index.html#experience">经历</a></li>
+        <li><a class="nav-link" href="index.html#awards">获奖</a></li>
+        <li><a class="nav-link" href="index.html#contact">联系方式</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="project-detail-main">
+    <section class="detail-hero" aria-labelledby="detail-title">
+      <div class="container detail-hero-grid">
+        <div class="reveal">
+          <a class="back-link" href="index.html#projects">← 返回项目列表</a>
+          <p class="detail-kicker">Remote Sensing · ENVI · Spatial Post-processing</p>
+          <h1 class="detail-title" id="detail-title">LULC 校园土地覆盖分类与精度验证</h1>
+          <p class="detail-summary">以华东师范大学闵行校区为研究区，基于 10 m 四波段遥感影像完成最大似然监督分类，并使用 Python 对分类结果进行对象级空间规则后处理，最终以实地照片样点进行四类精度验证。</p>
+          <div class="detail-meta"><span>Python</span><span>ENVI</span><span>Rasterio</span><span>NumPy</span><span>scikit-image</span><span>GIS</span></div>
+        </div>
+        <figure class="detail-visual detail-visual-contain reveal">
+          <img src="assets/lulc-classification-comparison.png" alt="原始最大似然分类、FinalV3 分类以及发生修改的像元对比">
+        </figure>
+      </div>
+    </section>
+
+    <section class="detail-content" aria-label="项目详情">
+      <div class="container detail-grid">
+        <article class="detail-panel wide reveal">
+          <h2>项目概览</h2>
+          <p>项目形成了“ENVI 最大似然分类 + Python 对象级空间规则后处理 + 地面样点精度评价”的完整流程。分类阶段保留 river、grass、tree、building、runway、fakegrass 和 road 七个精细类别；精度评价时统一归并为 Water、TreeCover、Grassland 和 Impervious / Artificial Surface 四类，以便与 SinoLC-1 进行同点位比较。</p>
+        </article>
+
+        <div class="detail-metric-grid reveal" aria-label="项目关键指标">
+          <div class="detail-metric"><strong>51.43%</strong><span>FinalV3 总体精度 OA</span></div>
+          <div class="detail-metric"><strong>0.3246</strong><span>FinalV3 Cohen's Kappa</span></div>
+          <div class="detail-metric"><strong>+20.00 pp</strong><span>相较 SinoLC-1 的 OA 提升</span></div>
+          <div class="detail-metric"><strong>897</strong><span>后处理修改像元，占全图 3.96%</span></div>
+        </div>
+
+        <article class="detail-panel reveal">
+          <h2>数据与研究区</h2>
+          <ul class="detail-list">
+            <li>研究区：华东师范大学闵行校区</li>
+            <li>影像：B02、B03、B04、B08 四波段</li>
+            <li>空间分辨率：10 m</li>
+            <li>输出网格：139 × 163 像元</li>
+            <li>坐标系：WGS 84 / UTM Zone 51N</li>
+          </ul>
+        </article>
+
+        <article class="detail-panel reveal">
+          <h2>分类方法</h2>
+          <ol class="detail-list">
+            <li>在 ENVI 中构建七类训练 ROI</li>
+            <li>运行 Maximum Likelihood Classification</li>
+            <li>计算 NDVI、NDWI 与局部纹理</li>
+            <li>按类别实施连通性、形状和邻域约束</li>
+            <li>保存 FinalV3 并开展精度评价</li>
+          </ol>
+        </article>
+
+        <article class="detail-panel reveal">
+          <h2>Python 空间后处理</h2>
+          <p>Python 部分属于规则驱动的对象级空间后处理，并非重新训练深度学习模型。处理使用 Rasterio、NumPy、SciPy 与 scikit-image，针对水体连通、跑道环状结构、树草混淆、住宅区人工地表以及孤立小斑块分别制定保守修正规则。</p>
+        </article>
+
+        <figure class="detail-panel detail-result-figure reveal" id="results">
+          <a href="assets/lulc-classification-comparison.png" target="_blank" rel="noopener noreferrer" aria-label="查看完整分类修正对比图">
+            <img src="assets/lulc-classification-comparison.png" alt="原始最大似然分类、FinalV3 分类与 897 个修正像元的对比图">
+          </a>
+          <figcaption>分类修正对比：FinalV3 在保留主要空间格局的基础上修改 897 个像元，占全图 3.96%。</figcaption>
+        </figure>
+
+        <article class="detail-panel reveal">
+          <h2>地面验证</h2>
+          <p>主评价使用 35 个有效评价样点：Water 3 个、TreeCover 13 个、Grassland 8 个、Impervious 11 个。所有点均来自校园实地照片及水印坐标，同一批点分别用于 SinoLC-1 和 FinalV3 的中心像元评价。</p>
+        </article>
+
+        <article class="detail-panel reveal">
+          <h2>精度结果</h2>
+          <p>SinoLC-1 的 OA 为 31.43%，Kappa 为 0.0071；FinalV3 的 OA 为 51.43%，Kappa 为 0.3246。FinalV3 在本次样本集上表现更好，但总体精度仍有限，复杂校园地物间仍存在明显混淆。</p>
+        </article>
+
+        <article class="detail-panel reveal">
+          <h2>主要混淆</h2>
+          <ul class="detail-list">
+            <li>TreeCover → Impervious：6 个样点</li>
+            <li>Impervious → Grassland：4 个样点</li>
+            <li>TreeCover → Grassland：3 个样点</li>
+            <li>Grassland → TreeCover：2 个样点</li>
+          </ul>
+        </article>
+
+        <figure class="detail-panel detail-result-figure reveal">
+          <a href="assets/lulc-accuracy-comparison.png" target="_blank" rel="noopener noreferrer" aria-label="查看完整精度指标对比图">
+            <img src="assets/lulc-accuracy-comparison.png" alt="SinoLC-1 与 FinalV3 的总体指标和各类别召回率对比图">
+          </a>
+          <figcaption>35 个有效评价样点上的指标对比。Water 仅有 3 个独立样点，因此该类别的精度估计波动较大。</figcaption>
+        </figure>
+
+        <article class="detail-panel wide reveal">
+          <h2>结论与局限</h2>
+          <p>该项目验证了空间先验能够改善像元级分类中的明显碎斑和不合理结构，但图面连续性改善并不等同于精度必然提高。10 m 混合像元、建筑与道路光谱相似、树草边界以及样点数量和空间分布仍限制结果。后续可结合更高分辨率影像、更均衡的独立样点和语义分割模型继续优化。</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><p>© <span id="year"></span> 千禧年. All rights reserved.</p><button class="back-to-top" type="button" aria-label="返回顶部">↑</button></div></footer>
+  <script src="script.js?v=20260716-3"></script>
+</body>
+</html>
